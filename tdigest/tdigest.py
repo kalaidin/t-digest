@@ -86,7 +86,7 @@ class TDigest(object):
         data = sorted(self.data, key=lambda x: x.m)
         for i, c in enumerate(data):
             ki = c.count
-            if q < t:
+            if q < t + ki:
                 if i == 1:
                     d = data[i + 1].m - data[i].m
                 elif i == self.n - 1:
@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
     t = TDigest(0.1)
     for z in range(10000):
-        x = random()
+        x = 2 * random()
         t.add(x, 1)
     print(len(t))
     print(t.quantile(0.8))
